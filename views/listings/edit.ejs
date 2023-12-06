@@ -1,0 +1,28 @@
+<% layout("layouts/boilerplate") %>
+<body>
+    <h1 class="mb-3 mt-3 col-6 offset-3">Edit Listing</h1>
+    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" class="col-6 offset-3  mt-3" enctype="multipart/form-data">
+        <input class="form-contol  mb-3" value="<%= listing.title %>" type="text" name="listing[title]" >
+        
+        <textarea class="form-control  mb-3" type="text" name="listing[description]"  rows="10" cols="20"><%= listing.description %></textarea>
+        <div class="mb-3">
+            <img src="<%= originalImageUrl %>" alt="image" width="250" height="300" />
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Upload new image</label>
+            <input class="form-control  mb-3"  type="file" name="listing[image]" >
+        </div>
+        
+        
+
+        
+        <input class="form-control mb-3"value="<%= listing.price %>" type="number" name="listing[price]" >
+        
+
+        <input class="form-control  mb-3" value="<%= listing.location %>" type="text" name="listing[location]" >
+       
+       
+        <input class="form-control  mb-3" value="<%= listing.country %>" type="text" name="listing[country]" >
+    <button class="btn-green mt-3">Edit</button>
+    </form>
+</body>

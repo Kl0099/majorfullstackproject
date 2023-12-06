@@ -1,0 +1,72 @@
+<% layout("layouts/boilerplate") %>
+<body>
+  <div class="col-6 offset-3">
+    <p class="h3">Create a New listing</p>
+    <div>
+      <form
+        action="/listings"
+        method="POST"
+        class="new_editpage"
+        enctype="multipart/form-data"
+      >
+        <input
+          class="form-control mb-3"
+          type="text"
+          name="listing[title]"
+          placeholder="title"
+          required
+        />
+
+        <textarea
+          type="text"
+          name="listing[description]"
+          placeholder="description"
+          required
+          rows="5"
+          cols="20"
+          class="form-control-sm mb-3"
+        ></textarea>
+
+        <!-- <input type="text" name="listing[image]" placeholder="image" class=" form-control mb-3"> -->
+        <div class="mb-3">
+          <label
+            for="image"
+            class="form-label"
+            >Upload Image</label
+          >
+          <input
+            type="file"
+            name="listing[image]"
+            class="form-control form-control-sm"
+            required
+          />
+        </div>
+
+        <input
+          type="number"
+          name="listing[price]"
+          placeholder="price"
+          required
+          class="form-control mb-3"
+        />
+
+        <input
+          type="text"
+          name="listing[location]"
+          placeholder="location"
+          required
+          class="form-control mb-3"
+        />
+
+        <input
+          type="text"
+          name="listing[country]"
+          placeholder="country"
+          required
+          class="form-control mb-3"
+        />
+        <button class="btn-green">Add</button>
+      </form>
+    </div>
+  </div>
+</body>

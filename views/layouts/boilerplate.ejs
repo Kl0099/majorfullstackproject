@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>airhub</title>
+    <link
+      rel="stylesheet"
+      href="/css/style.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/navbar.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/rating.css"
+    />
+    <link
+      rel="stylesheet"
+      href="path/to/font-awesome/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <style>
+    @media screen and (min-width: 1200px) {
+      .navbarr {
+        margin-left: 12rem;
+        margin-right: 12rem;
+        align-items: center;
+        display: flex;
+      }
+    }
+    .sticky {
+      position: relative;
+      position: sticky;
+      top: 90px;
+      box-shadow: -20px -20px 25px -5px rgb(0 0 0 / 0.5),
+        8px 8px 10px -6px rgb(0 0 0 / 0.06);
+      z-index: 10;
+    }
+  </style>
+
+  <body>
+    <div>
+      <div class="sticky">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid navbarr">
+            <div class="left_logo">
+              <a href="/listings">
+                <img
+                  src="/images/wanderlust.jpg"
+                  alt="wanderlust"
+                  width="60px"
+                  height="60px"
+                  style="border-radius: 100%"
+                />
+              </a>
+            </div>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+              class="collapse navbar-collapse"
+              id="navbarSupportedContent"
+              style="
+                margin-left: 2.5rem;
+                justify-content: center;
+                margin-top: 1rem;
+              "
+            >
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0 ml-2">
+                <li class="nav-item">
+                  <a
+                    class="nav-link active"
+                    aria-current="page"
+                    href="/listings"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item dropdown ml-2">
+                  <a
+                    class="nav-link"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    style="display: flex; gap: 10px"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="30"
+                      height="30"
+                      fill="currentColor"
+                      class="bi bi-person-circle"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                      <path
+                        fill-rule="evenodd"
+                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+                      />
+                    </svg>
+
+                    <p>Profile</p>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <% if (!curruser) { %>
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="/login"
+                        >login</a
+                      >
+                    </li>
+
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="/signup"
+                        >signup</a
+                      >
+                    </li>
+                    <% } %> <% if (curruser) { %>
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="/logout"
+                        >logout</a
+                      >
+                    </li>
+                    <% } %>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="/listings/new"
+                        >Add a listing</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <form
+                method="get"
+                action="/listings"
+                class="d-flex"
+                role="search"
+              >
+                <input
+                  id="title"
+                  name="title"
+                  class="form-control me-2"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+                <button
+                  class="btn btn-outline-success"
+                  type="submit"
+                >
+                  Search
+                </button>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <!-- -->
+
+    <div class="container">
+      <div
+        class="alert fade show alert-dismissible alert-warning offset-3 col-6 mt-3"
+        id="alert-box"
+        role="alert"
+      >
+        <strong class="alert-messege"> <%= success %> <%= error %></strong>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <%- body %>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/airhub/public/js/script.js"></script>
+    <script src="/js/script.js"></script>
+    <!-- <script>
+    let box = document.getElementById("alert-box");
+    box.style.backgroundColor = 'green';
+    box.style.color = 'white';
+    let message = document.getElementById("alert-message");
+    
+    if (message.innerText.trim() === "") {
+        box.style.display = "none";
+    } else {
+        box.style.display = "block";
+    }
+</script> -->
+    <script>
+      let box = document.getElementById("alert-box")
+      let success = "<%= success %>"
+      let error = "<%= error %>"
+
+      if (error.trim() === "") {
+        box.style.backgroundColor = "green"
+      } else {
+        box.style.backgroundColor = "red"
+      }
+      box.style.color = "white"
+      if (success.trim() !== "" || error.trim() !== "") {
+        box.style.display = "block"
+      } else {
+        box.style.display = "none"
+      }
+    </script>
+    <footer class="footer-tag">
+      <div class="footer-top">
+        <div class="container">
+          <div class="footer-day-time">
+            <div class="row">
+              <div class="col-md-8">
+                <ul></ul>
+              </div>
+              <div class="col-lg-4">
+                <div class="phone-no"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4">
+              <h4>About us</h4>
+              <p>
+                Lorem Ipsum ist einfach Dummy-Text der Druck- und Satzindustrie.
+                Lorem Ipsum war der Standard der Branche Lorem Ipsum ist einfach
+                Dummy-Text der Druck- und Satzindustrie. Lorem Ipsum war der
+                Standard der Branche
+              </p>
+            </div>
+
+            <div class="col-md-4">
+              <h4>Information</h4>
+              <ul class="address1">
+                <li>
+                  <i class="fa fa-map-marker"></i>Lorem Ipsum 132 xyz Lorem
+                  Ipsum
+                </li>
+                <li>
+                  <i class="fa fa-envelope"></i><a href="#">info@test.com</a>
+                </li>
+                <li>
+                  <i
+                    class="fa fa-mobile"
+                    aria-hidden="true"
+                  ></i>
+                  <a href="#">12 34 56 78 90</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-md-4">
+              <h4>Follow us</h4>
+              <ul class="social-icon">
+                <li>
+                  <a href="#"
+                    ><i
+                      class="fa fa-facebook"
+                      aria-hidden="true"
+                    ></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><i
+                      class="fa fa-instagram"
+                      aria-hidden="true"
+                    ></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><i
+                      class="fa fa-twitter"
+                      aria-hidden="true"
+                    ></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-5">
+              <p class="copyright text-uppercase">Copyright © 2023</p>
+            </div>
+            <div class="col-sm-7"></div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
